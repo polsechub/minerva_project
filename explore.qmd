@@ -42,4 +42,18 @@ The figure below shows the difference in shipping movements, in each country, as
 :::
 :::
 
+** STATA Output**
+
+*xtreg  cum_n_vessels stringency_index_monthly if year>2018 & year<2023, fe vce(cluster gid) *
+*margins, at(stringency_index_monthly = (0(10)100)) atmeans*
+*marginsplot*
+
+Using a simple stata command to explore how monthly stringency index explains cumulative count of vessels in monthly grid (following command), produces figure shown below. This is for each grid-cell: on average, when stringency was increased from 0 to 50, there were 10 less vessels in a grid-cells in the Gulf of Guinea. 
+
+
+::: {style="text-align:center;"}
+::: {layout-ncol="1" layout-valign="bottom"}
+![Stata output](input/stata/xtreg_output.png)
+:::
+:::
 
