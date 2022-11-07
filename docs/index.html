@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.1.251">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Minerva Project - Project update (Fleetmon data munging)</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">Minerva Project</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link active" href="./index.html" aria-current="page">Home</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./about.html">About</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./explore.html">Explore</a>
+  </li>  
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Project update (Fleetmon data munging)</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    
+  </div>
+  
+
+</header>
+
+<p>Updating the project page so far</p>
+<p>The AIS data is huge. So we now have chunked it into yearly raw data (with 2 hourly updates).</p>
+<p><strong>Daily data:</strong> We have utilized prio gridcells by counting all unique ships in a gridcell, for each day. For instance, grid-cell 138607 had 146 unique vessels on 2014/6/21, whereas grid-cell 129966 had only one unique ship movement on that day.</p>
+<p><strong>Monthly</strong>: We then count all daily unique ship movements in a month for each grid-cells, from January 2014 January to August 2022. Note that these are cumulative counts and note average, and there is a substantive variations among gridcells in the Gulf of Guinea (and therefore log transformed value is a better depiction in a figure). For instance, grid-cell 138607 had 4190 unique vessels on 2014/6, whereas grid-cell 129966 had only 31 unique ship movement on that month.</p>
+<div class="cell">
+
+</div>
+<p>The following figures compare the raw two-hour updates of ship movements in the August 2014, with the aggregate monthly grid-cell data.</p>
+<p><strong>Month: August 2014</strong></p>
+<div style="text-align:center;">
+<div class="quarto-layout-panel">
+<div class="quarto-layout-row quarto-layout-valign-bottom">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="input/monthly_priogrid_viz_2014_6.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Grid-cell</figcaption><p></p>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="input/monthly_raw_viz_2014_6.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Raw, 2-hour updates</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- piracy in gog map is from: "C:\Users\phayala\OneDrive - UNC-Wilmington\my research\MINERVA_PROJECT\PROJECT piracy_fishing\West Africa\data gog_iuu_piracy_rproj\script\2 gog_explore_figure_priogrid.R" -->
+<p><strong>Does piracy affect trade/ship movement? Analyzing grid-cell 135014</strong></p>
+<p>Does the above data correlate with piracy events? Following figures depict piracy events that took place within the indicated month. One grid-cell where the number of piracy incidents vary is grid-cell 135014. Figure captions show the ship cumulative count and the average daily ship count for displayed month, for that grid-cell only (grid-cell 135014). After the last figure, the table displays the ship movement data for that grid-cell. IT is likely that the variation in ship movement is seasonal.</p>
+<p>Piracy events are “Actual” events, and does not include “Attempted” (including attempted is slightly more noisy)</p>
+<p>We do see some fluctuations in ship movements with piracy events, although it is not very clear. For instance, we see piracy in the month that has higher ship movement, which is what we argued in the Indonesian paper. But because we have monthly ship movement data, we are not able to ascertain whether ship movements are reduced in the short run, immediately after piracy.</p>
+<p>It might be bit clearer if we scale this to weekly level.</p>
+<div style="text-align:center;">
+<div class="quarto-layout-panel">
+<div class="quarto-layout-row quarto-layout-valign-bottom">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="input/piracy_in_gogmap/gog_2017_08_piracy.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">2017-08, ship cum. count=401, average daily=12.9</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="quarto-layout-row quarto-layout-valign-bottom">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="input/piracy_in_gogmap/gog_2017_09_piracy.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">2017-09, ship cum. count=341, average daily=11.4</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="quarto-layout-row quarto-layout-valign-bottom">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="input/piracy_in_gogmap/gog_2017_10_piracy.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">2017-10, ship cum. count=370, average daily=11.9</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="quarto-layout-row quarto-layout-valign-bottom">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="input/piracy_in_gogmap/gog_2017_11_piracy.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">2017-11, ship cum. count=350, average daily=11.7</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="quarto-layout-row quarto-layout-valign-bottom">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="input/piracy_in_gogmap/gog_2017_12_piracy.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">2017-12, ship cum. count=414, average daily=13.4</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="quarto-layout-row quarto-layout-valign-bottom">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="input/piracy_in_gogmap/gog_2018_1_piracy.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">2018-01, ship cum. count=380, average daily=12.3</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="quarto-layout-row quarto-layout-valign-bottom">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="input/piracy_in_gogmap/gog_2018_2_piracy.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">2018-02, ship cum. count=322, average daily=11.5</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="quarto-layout-row quarto-layout-valign-bottom">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="input/piracy_in_gogmap/gog_2018_3_piracy.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">2018-03, ship cum. count=440, average daily=14.2</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="quarto-layout-row quarto-layout-valign-bottom">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="input/piracy_in_gogmap/gog_2018_4_piracy.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">2018-04, ship cum. count=393, average daily=13.1</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="quarto-layout-row quarto-layout-valign-bottom">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="input/piracy_in_gogmap/gog_2018_5_piracy.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">2018-05, ship cum. count=388, average daily=12.5</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="quarto-layout-row quarto-layout-valign-bottom">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="input/piracy_in_gogmap/gog_2018_6_piracy.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">2018-06, ship cum. count=334, average daily=11.1</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p>Looking at the ship movement data for grid-cell 135014, which is in the Nigerian EEZ:</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>    gid year month cum_n_vessels mean_vessels
+ 135014 2017     1           356         11.5
+ 135014 2017     2           308         11.0
+ 135014 2017     3           326         10.5
+ 135014 2017     4           437         14.6
+ 135014 2017     5           390         12.6
+ 135014 2017     6           395         13.2
+ 135014 2017     7           368         11.9
+ 135014 2017     8           401         12.9
+ 135014 2017     9           341         11.4
+ 135014 2017    10           370         11.9
+ 135014 2017    11           350         11.7
+ 135014 2017    12           414         13.4
+ 135014 2018     1           380         12.3
+ 135014 2018     2           322         11.5
+ 135014 2018     3           440         14.2
+ 135014 2018     4           393         13.1
+ 135014 2018     5           388         12.5
+ 135014 2018     6           334         11.1
+ 135014 2018     7           326         10.5
+ 135014 2018     8           382         12.3
+ 135014 2018     9           337         11.2
+ 135014 2018    10           385         12.4
+ 135014 2018    11           377         12.6
+ 135014 2018    12           463         14.9</code></pre>
+</div>
+</div>
+
+
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>
