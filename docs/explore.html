@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>minerva_project - Project update (Fleetmon data munging)</title>
+<title>Minerva Project - Explore</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -71,7 +71,7 @@ ul.task-list li input[type="checkbox"] {
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container">
     <a class="navbar-brand" href="./index.html">
-    <span class="navbar-title">minerva_project</span>
+    <span class="navbar-title">Minerva Project</span>
     </a>
   </div>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
@@ -86,7 +86,7 @@ ul.task-list li input[type="checkbox"] {
     <a class="nav-link" href="./about.html">About</a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="./explore.html" aria-current="page">Project update (Fleetmon data munging)</a>
+    <a class="nav-link active" href="./explore.html" aria-current="page">Explore</a>
   </li>  
 </ul>
               <div id="quarto-search" class="" title="Search"></div>
@@ -106,7 +106,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Project update (Fleetmon data munging)</h1>
+<h1 class="title">Explore</h1>
 </div>
 
 
@@ -120,21 +120,12 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<p>Updating the project page so far</p>
 <p><strong>Aggregating ship traffic across grid-cells:</strong> We now have grid-cell level AIS data merged with COVID stringency index. A potential problem is that our unit of analysis is grid-cell level and aggregating the changes in grid-cells in a country’s EEZ is slightly problematic. This is because, Nigeria, a country which has much larger EEZ has a number of grid-cells with very low or no traffic, but Cameroon, which has smaller EEZ has most of the grid-cells with much higher traffic. So, although there are grid-cells in Nigeria that have much higher traffic, averaging them across all Nigerian grid-cells makes the figure low, compared to say traffic in Cameroon EEZ grid-cells. [As shown below]</p>
-<p><strong>Month: August 2014</strong></p>
+<p><em>Month: August 2014</em></p>
 <div style="text-align:center;">
 <div class="quarto-layout-panel">
 <div class="quarto-layout-row quarto-layout-valign-bottom">
-<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="input/monthly_priogrid_viz_2014_6.png" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">Grid-cell</figcaption><p></p>
-</figure>
-</div>
-</div>
-<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="input/monthly_raw_viz_2014_6.png" class="img-fluid figure-img"></p>
@@ -162,33 +153,25 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </div>
 </div>
-<div class="cell">
-<div class="cell-output cell-output-stdout">
-<pre><code>    gid year month cum_n_vessels mean_vessels
- 135014 2017     1           356         11.5
- 135014 2017     2           308         11.0
- 135014 2017     3           326         10.5
- 135014 2017     4           437         14.6
- 135014 2017     5           390         12.6
- 135014 2017     6           395         13.2
- 135014 2017     7           368         11.9
- 135014 2017     8           401         12.9
- 135014 2017     9           341         11.4
- 135014 2017    10           370         11.9
- 135014 2017    11           350         11.7
- 135014 2017    12           414         13.4
- 135014 2018     1           380         12.3
- 135014 2018     2           322         11.5
- 135014 2018     3           440         14.2
- 135014 2018     4           393         13.1
- 135014 2018     5           388         12.5
- 135014 2018     6           334         11.1
- 135014 2018     7           326         10.5
- 135014 2018     8           382         12.3
- 135014 2018     9           337         11.2
- 135014 2018    10           385         12.4
- 135014 2018    11           377         12.6
- 135014 2018    12           463         14.9</code></pre>
+<p><strong>Stringency Index and Monthly lag difference in traffic</strong></p>
+<p>Another approach to check the traffic in each grid-cell is to see the difference in traffic from one month to next. This is done in two steps:</p>
+<ul>
+<li><p>For each grid-cell in a country’s EEZ, find the difference in traffic. For instance, if a grid-cell had 100 unique vessels last month, and 80 this month, then the difference would be -20.</p></li>
+<li><p>Average the difference across all grid-cells in a country’s EEZ to create the country’s average monthly difference in vessel movements.</p></li>
+</ul>
+<p>The figure below shows the difference in shipping movements, in each country, as well as the monthly stringency index.</p>
+<div style="text-align:center;">
+<div class="quarto-layout-panel">
+<div class="quarto-layout-row quarto-layout-valign-bottom">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="input/descriptive/monthly_difference_stringency.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">2019-2022</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
 </div>
 </div>
 

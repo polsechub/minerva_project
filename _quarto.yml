@@ -3,7 +3,7 @@ project:
   output-dir: docs
 
 website:
-  title: "minerva_project"
+  title: "Minerva Project"
   navbar:
     left:
       - href: index.qmd

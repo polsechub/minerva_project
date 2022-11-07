@@ -1,17 +1,13 @@
 ---
-title: "Project update (Fleetmon data munging)"
+title: "Explore"
 ---
-
-Updating the project page so far
 
 **Aggregating ship traffic across grid-cells:** We now have grid-cell level AIS data merged with COVID stringency index. A potential problem is that our unit of analysis is grid-cell level and aggregating the changes in grid-cells in a country's EEZ is slightly problematic. This is because, Nigeria, a country which has much larger EEZ has a number of grid-cells with very low or no traffic, but Cameroon, which has smaller EEZ has most of the grid-cells with much higher traffic. So, although there are grid-cells in Nigeria that have much higher traffic, averaging them across all Nigerian grid-cells makes the figure low, compared to say traffic in Cameroon EEZ grid-cells. \[As shown below\]
 
-**Month: August 2014**
+*Month: August 2014*
 
 ::: {style="text-align:center;"}
-::: {layout-ncol="2" layout-valign="bottom"}
-![Grid-cell](input/monthly_priogrid_viz_2014_6.png)
-
+::: {layout-ncol="1" layout-valign="bottom"}
 ![Raw, 2-hour updates](input/monthly_raw_viz_2014_6.png)
 :::
 :::
@@ -28,13 +24,20 @@ In the following, I have averaged cumulative count of monthly traffic across all
 :::
 :::
 
-```{r, echo=FALSE}
-fleetmon<-read.csv("input/fdat/all_monthly_vessels_in_priogrid.csv")
+**Stringency Index and Monthly lag difference in traffic**
 
-fleetmon_gid<-fleetmon[fleetmon$gid==135014 & fleetmon$year>2016 & fleetmon$year<2019,]
+Another approach to check the traffic in each grid-cell is to see the difference in traffic from one month to next. This is done in two steps:
 
-fleetmon_gid$yearmon <- as.numeric(paste0(as.character(fleetmon_gid$year), as.character(sprintf("%02d", as.numeric(fleetmon_gid$month)))))
+-   For each grid-cell in a country's EEZ, find the difference in traffic. For instance, if a grid-cell had 100 unique vessels last month, and 80 this month, then the difference would be -20.
 
-print(fleetmon_gid[, c("gid", "year","month", "cum_n_vessels", "mean_vessels")], row.names=FALSE)
+-   Average the difference across all grid-cells in a country's EEZ to create the country's average monthly difference in vessel movements.
 
-```
+The figure below shows the difference in shipping movements, in each country, as well as the monthly stringency index.
+
+::: {style="text-align:center;"}
+::: {layout-ncol="1" layout-valign="bottom"}
+![2019-2022](input/descriptive/monthly_difference_stringency.png)
+:::
+:::
+
+
