@@ -7,6 +7,13 @@
     "text": "1 + 1\n\n[1] 2"
   },
   {
+    "objectID": "explore.html",
+    "href": "explore.html",
+    "title": "Project update (Fleetmon data munging)",
+    "section": "",
+    "text": "Aggregating ship traffic across grid-cells: We now have grid-cell level AIS data merged with COVID stringency index. A potential problem is that our unit of analysis is grid-cell level and aggregating the changes in grid-cells in a country’s EEZ is slightly problematic. This is because, Nigeria, a country which has much larger EEZ has a number of grid-cells with very low or no traffic, but Cameroon, which has smaller EEZ has most of the grid-cells with much higher traffic. So, although there are grid-cells in Nigeria that have much higher traffic, averaging them across all Nigerian grid-cells makes the figure low, compared to say traffic in Cameroon EEZ grid-cells. [As shown below]\nMonth: August 2014\n\n\n\n\n\n\n\nGrid-cell\n\n\n\n\n\n\n\nRaw, 2-hour updates\n\n\n\n\n\n\nAlso, restrictions may not affect the vessel mobility of cargo ships as much as passenger ships. And, if majority of ships in Nigeria are oil trafic, then they may not be affected as much as in, say traffic in Europe. This is one reason we need to disaggregate traffic by “type” (next analysis topic).\nStringency and Traffic\nIn the following, I have averaged cumulative count of monthly traffic across all grid-cells in a country’s EEZ.\n\n\n\n\n\n\n\n2019-2022\n\n\n\n\n\n\n\n\n    gid year month cum_n_vessels mean_vessels\n 135014 2017     1           356         11.5\n 135014 2017     2           308         11.0\n 135014 2017     3           326         10.5\n 135014 2017     4           437         14.6\n 135014 2017     5           390         12.6\n 135014 2017     6           395         13.2\n 135014 2017     7           368         11.9\n 135014 2017     8           401         12.9\n 135014 2017     9           341         11.4\n 135014 2017    10           370         11.9\n 135014 2017    11           350         11.7\n 135014 2017    12           414         13.4\n 135014 2018     1           380         12.3\n 135014 2018     2           322         11.5\n 135014 2018     3           440         14.2\n 135014 2018     4           393         13.1\n 135014 2018     5           388         12.5\n 135014 2018     6           334         11.1\n 135014 2018     7           326         10.5\n 135014 2018     8           382         12.3\n 135014 2018     9           337         11.2\n 135014 2018    10           385         12.4\n 135014 2018    11           377         12.6\n 135014 2018    12           463         14.9"
+  },
+  {
     "objectID": "index.html",
     "href": "index.html",
     "title": "Project update (Fleetmon data munging)",

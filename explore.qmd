@@ -1,0 +1,40 @@
+---
+title: "Project update (Fleetmon data munging)"
+---
+
+Updating the project page so far
+
+**Aggregating ship traffic across grid-cells:** We now have grid-cell level AIS data merged with COVID stringency index. A potential problem is that our unit of analysis is grid-cell level and aggregating the changes in grid-cells in a country's EEZ is slightly problematic. This is because, Nigeria, a country which has much larger EEZ has a number of grid-cells with very low or no traffic, but Cameroon, which has smaller EEZ has most of the grid-cells with much higher traffic. So, although there are grid-cells in Nigeria that have much higher traffic, averaging them across all Nigerian grid-cells makes the figure low, compared to say traffic in Cameroon EEZ grid-cells. \[As shown below\]
+
+**Month: August 2014**
+
+::: {style="text-align:center;"}
+::: {layout-ncol="2" layout-valign="bottom"}
+![Grid-cell](input/monthly_priogrid_viz_2014_6.png)
+
+![Raw, 2-hour updates](input/monthly_raw_viz_2014_6.png)
+:::
+:::
+
+Also, restrictions may not affect the vessel mobility of cargo ships as much as passenger ships. And, if majority of ships in Nigeria are oil trafic, then they may not be affected as much as in, say traffic in Europe. This is one reason we need to disaggregate traffic by "type" (next analysis topic).
+
+**Stringency and Traffic**
+
+In the following, I have averaged cumulative count of monthly traffic across all grid-cells in a country's EEZ.
+
+::: {style="text-align:center;"}
+::: {layout-ncol="1" layout-valign="bottom"}
+![2019-2022](input/descriptive/monthly_cumulative_n_stringency.png)
+:::
+:::
+
+```{r, echo=FALSE}
+fleetmon<-read.csv("input/fdat/all_monthly_vessels_in_priogrid.csv")
+
+fleetmon_gid<-fleetmon[fleetmon$gid==135014 & fleetmon$year>2016 & fleetmon$year<2019,]
+
+fleetmon_gid$yearmon <- as.numeric(paste0(as.character(fleetmon_gid$year), as.character(sprintf("%02d", as.numeric(fleetmon_gid$month)))))
+
+print(fleetmon_gid[, c("gid", "year","month", "cum_n_vessels", "mean_vessels")], row.names=FALSE)
+
+```
