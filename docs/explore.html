@@ -175,9 +175,10 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </div>
 </div>
-<p>** STATA Output**</p>
+<p><strong>STATA Output</strong></p>
 <p><em>xtreg cum_n_vessels stringency_index_monthly if year&gt;2018 &amp; year&lt;2023, fe vce(cluster gid) </em> <em>margins, at(stringency_index_monthly = (0(10)100)) atmeans</em> <em>marginsplot</em></p>
-<p>Using a simple stata command to explore how monthly stringency index explains cumulative count of vessels in monthly grid (following command), produces figure shown below. This is for each grid-cell: on average, when stringency was increased from 0 to 50, there were 10 less vessels in a grid-cells in the Gulf of Guinea.</p>
+<p>Below is the result from a simple stata command (above) to explore how monthly stringency index explains cumulative count of vessels in monthly grid-cell.</p>
+<p>From the Gulf of Guinea data, we find that on average, when a country increases stringency level from 0 to 50, there are 10 less vessels in a grid-cell month. This is substantive decline given that the mean of traffic in all Gulf of Guinea grid-cells is 84.</p>
 <div style="text-align:center;">
 <div class="quarto-layout-panel">
 <div class="quarto-layout-row quarto-layout-valign-bottom">
