@@ -41,9 +41,9 @@ It might be bit clearer if we scale this to weekly level.
 ::: {style="text-align:center;"}
 ::: {layout-ncol="2" layout-valign="bottom"}
 
-![2017-12, Actual piracy events close to Nigeria, ship cumulative count=414](input/piracy_in_gogmap/circled_gog_2017_12_piracy.jpg)
+![2017-12, Actual piracy events close to Nigeria](input/piracy_in_gogmap/circled_gog_2017_12_piracy.jpg)
 
-![2018-01, ship cumulative count=380, average daily=12.3](input/piracy_in_gogmap/gog_2018_1_piracy.png)
+![2018-01, Ship cumulative count=380](input/piracy_in_gogmap/gog_2018_1_piracy.png)
 
 :::
 :::
