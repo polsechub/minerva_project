@@ -1,8 +1,6 @@
 ---
-title: "Presentation - Minerva"
+title: "Presentation"
 ---
-
-
 
 
 
@@ -13,6 +11,20 @@ title: "Presentation - Minerva"
                   "input/Minerva2023Presentation.pdf" 
                 width="1200" 
                 height="750"> 
+        </object>
+    </center>
+</body>
+
+Hello
+
+<body>
+    <center>
+        <h1 style="color: green">GeeksforGeeks</h1>
+        <h3>Embedding the PDF file Using Object Tag</h3>
+        <object data=
+            "input/Minerva2023Presentation.pdf" 
+                width="800" 
+                height="500"> 
         </object>
     </center>
 </body>

@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Minerva Project - Explore</title>
+<title>Minerva Project - Presentation</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -88,11 +88,11 @@ ul.task-list li input[type="checkbox"] {
  <span class="menu-text">Update</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="./explore.html" aria-current="page">
+    <a class="nav-link" href="./explore.html">
  <span class="menu-text">Explore</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./pdfpresentation.html">
+    <a class="nav-link active" href="./pdfpresentation.html" aria-current="page">
  <span class="menu-text">Presentation</span></a>
   </li>  
 </ul>
@@ -113,7 +113,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Explore</h1>
+<h1 class="title">Presentation</h1>
 </div>
 
 
@@ -128,79 +128,26 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<p>November 7, 2022</p>
-<p><strong>Aggregating ship traffic across grid-cells:</strong> We now have grid-cell level AIS data merged with COVID stringency index. A potential problem is that our unit of analysis is grid-cell level and aggregating the changes in grid-cells in a country’s EEZ is slightly problematic. This is because, Nigeria, a country which has much larger EEZ has a number of grid-cells with very low or no traffic, but Cameroon, which has smaller EEZ has most of the grid-cells with much higher traffic. So, although there are grid-cells in Nigeria that have much higher traffic, averaging them across all Nigerian grid-cells makes the figure low, compared to say traffic in Cameroon EEZ grid-cells. [As shown below]</p>
-<p><em>Month: August 2014</em></p>
-<div style="text-align:center;">
-<div class="quarto-layout-panel">
-<div class="quarto-layout-row quarto-layout-valign-bottom">
-<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="input/monthly_raw_viz_2014_6.png" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">Raw, 2-hour updates</figcaption><p></p>
-</figure>
-</div>
-</div>
-</div>
-</div>
-</div>
-<p>Also, restrictions may not affect the vessel mobility of cargo ships as much as passenger ships. And, if majority of ships in Nigeria are oil trafic, then they may not be affected as much as in, say traffic in Europe. This is one reason we need to disaggregate traffic by “type” (next analysis topic).</p>
-<p><strong>Stringency and Traffic</strong></p>
-<p>In the following, I have averaged cumulative count of monthly traffic across all grid-cells in a country’s EEZ.</p>
-<div style="text-align:center;">
-<div class="quarto-layout-panel">
-<div class="quarto-layout-row quarto-layout-valign-bottom">
-<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="input/descriptive/monthly_cumulative_n_stringency.png" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">2019-2022</figcaption><p></p>
-</figure>
-</div>
-</div>
-</div>
-</div>
-</div>
-<p><strong>Stringency Index and Monthly lag difference in traffic</strong></p>
-<p>Another approach to check the traffic in each grid-cell is to see the difference in traffic from one month to next. This is done in two steps:</p>
-<ul>
-<li><p>For each grid-cell in a country’s EEZ, find the difference in traffic. For instance, if a grid-cell had 100 unique vessels last month, and 80 this month, then the difference would be -20.</p></li>
-<li><p>Average the difference across all grid-cells in a country’s EEZ to create the country’s average monthly difference in vessel movements.</p></li>
-</ul>
-<p>The figure below shows the difference in shipping movements, in each country, as well as the monthly stringency index.</p>
-<div style="text-align:center;">
-<div class="quarto-layout-panel">
-<div class="quarto-layout-row quarto-layout-valign-bottom">
-<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="input/descriptive/monthly_difference_stringency.png" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">2019-2022</figcaption><p></p>
-</figure>
-</div>
-</div>
-</div>
-</div>
-</div>
-<p><strong>STATA Output</strong></p>
-<p><em>xtreg cum_n_vessels stringency_index_monthly if year&gt;2018 &amp; year&lt;2023, fe vce(cluster gid) </em> <em>margins, at(stringency_index_monthly = (0(10)100)) atmeans</em> <em>marginsplot</em></p>
-<p>Below is the result from a simple stata command (above) to explore how monthly stringency index explains cumulative count of vessels in monthly grid-cell.</p>
-<p>From the Gulf of Guinea data, we find that on average, when a country increases stringency level from 0 to 50, there are 10 less vessels in a grid-cell month. This is substantive decline given that the mean of traffic in all Gulf of Guinea grid-cells is 84.</p>
-<div style="text-align:center;">
-<div class="quarto-layout-panel">
-<div class="quarto-layout-row quarto-layout-valign-bottom">
-<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="input/stata/xtreg_output.png" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">Stata output</figcaption><p></p>
-</figure>
-</div>
-</div>
-</div>
-</div>
-</div>
+
+<center>
+<!-- <h1 style="color: green">Presentation</h1> -->
+<object data="input/Minerva2023Presentation.pdf" width="1200" height="750">
+</object>
+</center>
+
+<p>Hello</p>
+
+<center>
+<h1 style="color: green">
+GeeksforGeeks
+</h1>
+<h3 class="anchored">
+Embedding the PDF file Using Object Tag
+</h3>
+<object data="input/Minerva2023Presentation.pdf" width="800" height="500">
+</object>
+</center>
+
 
 
 
