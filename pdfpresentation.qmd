@@ -1,0 +1,18 @@
+---
+title: "Presentation - Minerva"
+---
+
+
+
+
+
+<body>
+    <center>
+        <!-- <h1 style="color: green">Presentation</h1> -->
+        <object data=
+                  "input/Minerva2023Presentation.pdf" 
+                width="1200" 
+                height="750"> 
+        </object>
+    </center>
+</body>
