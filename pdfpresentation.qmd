@@ -2,29 +2,22 @@
 title: "Presentation"
 ---
 
-
-
-<body>
-    <center>
-        <!-- <h1 style="color: green">Presentation</h1> -->
-        <object data=
-                  "input/Minerva2023Presentation.pdf" 
-                width="1200" 
-                height="750"> 
-        </object>
-    </center>
-</body>
-
-Hello
-
+<html>
+  
+<head>
+    <title>PDF in HTML</title>
+</head>
+  
 <body>
     <center>
         <h1 style="color: green">GeeksforGeeks</h1>
         <h3>Embedding the PDF file Using Object Tag</h3>
         <object data=
-            "input/Minerva2023Presentation.pdf" 
-                width="800" 
-                height="500"> 
+"input/Minerva2023Presentation.pdf" 
+                width="1200" 
+                height="750"> 
         </object>
     </center>
 </body>
+  
+</html>
