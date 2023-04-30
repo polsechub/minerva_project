@@ -6,7 +6,7 @@ title: "Presentation"
     <center>
         <!-- <h1 style="color: green">Presentation</h1> -->
         <object data=
-                  "input/monthly_priogrid_viz_2014_6.png" 
+                  "input/Minerva2023Presentation.pdf" 
                 width="1200" 
                 height="750"> 
         </object>
